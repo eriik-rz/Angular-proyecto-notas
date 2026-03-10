@@ -1,0 +1,54 @@
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Listado de Notas</h2>
+        <span class="badge bg-primary">{{ notas().length }} notas encontradas</span>
+    </div>
+
+    @if (mostrarBannerBorrado()) {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span class="material-symbols-outlined align-middle">delete_forever</span>
+            Nota eliminada correctamente.
+            <button type="button" class="btn-close" (click)="mostrarBannerBorrado.set(false)"></button>
+        </div>
+    }
+
+    <div class="table-responsive shadow-sm">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Contenido</th>
+                    <th>Etiqueta</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (nota of notas(); track nota.id) {
+                    <tr>
+                        <td class="fw-bold">{{ nota.titulo }}</td>
+                        <td>{{ nota.contenido }}</td>
+                        <td>
+                            <span class="badge rounded-pill bg-info text-dark">
+                                {{ nota.nombre_etiqueta || 'Sin etiqueta' }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-outline-warning btn-sm me-2" [routerLink]="['/notas-edicion', nota.id]">
+                                <span class="material-symbols-outlined fs-6">edit</span>
+                            </button>
+                            <button class="btn btn-outline-danger btn-sm" (click)="borrarNota(nota.id)">
+                                <span class="material-symbols-outlined fs-6">delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                } @empty {
+                    <tr>
+                        <td colspan="4" class="text-center text-muted py-4">
+                            No hay notas guardadas. ¡Crea la primera!
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

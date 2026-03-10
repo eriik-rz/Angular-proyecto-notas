@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <div class="card border-primary shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Consulta por Etiqueta</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">Selecciona una categoría para ver sus notas asociadas.</p>
+            
+            <select class="form-select form-select-lg mb-4" 
+                    [(ngModel)]="etiquetaSeleccionada" 
+                    (change)="filtrarPorEtiqueta()">
+                <option value="0" disabled>-- Seleccione una etiqueta --</option>
+                @for (e of etiquetas(); track e.id) {
+                    <option [value]="e.id">{{ e.nombre }}</option>
+                }
+            </select>
+
+            <div class="row">
+                @for (nota of notasFiltradas(); track nota.id) {
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100 border-start border-4 border-info">
+                            <div class="card-body">
+                                <h5 class="card-title text-info">{{ nota.titulo }}</h5>
+                                <p class="card-text">{{ nota.contenido }}</p>
+                            </div>
+                        </div>
+                    </div>
+                } @empty {
+                    @if (etiquetaSeleccionada() !== 0) {
+                        <div class="text-center py-5">
+                            <span class="material-symbols-outlined fs-1 text-muted">folder_open</span>
+                            <p class="text-muted">No se encontraron notas para esta etiqueta.</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

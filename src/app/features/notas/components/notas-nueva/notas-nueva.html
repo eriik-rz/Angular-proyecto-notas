@@ -1,0 +1,73 @@
+<div class="container mt-4">
+    <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0 d-flex align-items-center">
+                <span class="material-symbols-outlined me-2">note_add</span>
+                Añadir Nueva Nota
+            </h3>
+        </div>
+        <div class="card-body">
+            <form (submit)="alta($event)" class="needs-validation">
+                
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Título</label>
+                    <input type="text" 
+                           [formField]="notasForm.titulo" 
+                           class="form-control"
+                           placeholder="Ej: Comprar leche"
+                           [class.is-invalid]="notaModel().titulo.trim().length === 0 && botonGuardarPulsado">
+                    <div class="invalid-feedback">Por favor, escribe un título.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Contenido</label>
+                    <textarea [formField]="notasForm.contenido" 
+                              class="form-control" 
+                              rows="3" 
+                              placeholder="Detalles de la nota..."></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Categoría / Etiqueta</label>
+                    <select class="form-select"
+                            [class.is-invalid]="notaModel().etiqueta_id === 0 && botonGuardarPulsado"
+                            (change)="actualizarEtiqueta($event)">
+                        
+                        <option value="0" [selected]="notaModel().etiqueta_id === 0" disabled>
+                            Selecciona una etiqueta...
+                        </option>
+                        
+                        @for (eti of etiquetas(); track eti.id) {
+                            <option [value]="eti.id" [selected]="eti.id === notaModel().etiqueta_id">
+                                {{ eti.nombre }}
+                            </option>
+                        }
+                    </select>
+                    <div class="invalid-feedback">Debes seleccionar una etiqueta para organizar la nota.</div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" 
+                            class="btn btn-success btn-lg" 
+                            [disabled]="cargando()">
+                        @if (cargando()) {
+                            <span class="spinner-border spinner-border-sm me-2"></span> Guardando...
+                        } @else {
+                            <div class="d-flex align-items-center justify-content-center">
+                                <span class="material-symbols-outlined me-2">save</span>
+                                Guardar Nota
+                            </div>
+                        }
+                    </button>
+                </div>
+            </form>
+
+            @if(mostrarAlerta){
+                <div class="alert alert-success d-flex align-items-center mt-3 animate__animated animate__fadeIn">
+                    <span class="material-symbols-outlined me-2">check_circle</span>
+                    <div>¡Nota guardada con éxito!</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

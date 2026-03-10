@@ -1,0 +1,64 @@
+<nav class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+            <span class="material-symbols-outlined text-white">menu</span>
+        </button>
+
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <span class="material-symbols-outlined me-2">description</span>
+            Gestor de Notas
+        </a>
+    </div>
+</nav>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+    <div class="offcanvas-header bg-light">
+        <h5 class="offcanvas-title d-flex align-items-center" id="offcanvasMenuLabel">
+            <span class="material-symbols-outlined me-2">explore</span>
+            Navegación
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body p-0">
+        <nav class="navbar w-100">
+            <ul class="nav flex-column w-100">
+                
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark py-3 d-flex align-items-center" routerLink="/notas-lista" routerLinkActive="bg-primary text-white" data-bs-dismiss="offcanvas">
+                        <span class="material-symbols-outlined me-3">format_list_bulleted</span>
+                        Lista de Notas
+                    </a>
+                </li>
+
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark py-3 d-flex align-items-center" routerLink="/notas-nueva" routerLinkActive="bg-primary text-white" data-bs-dismiss="offcanvas">
+                        <span class="material-symbols-outlined me-3">note_add</span>
+                        Añadir Nota
+                    </a>
+                </li>
+
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark py-3 d-flex align-items-center" routerLink="/etiquetas-lista" routerLinkActive="bg-primary text-white" data-bs-dismiss="offcanvas">
+                        <span class="material-symbols-outlined me-3">sell</span>
+                        Lista de Etiquetas
+                    </a>
+                </li>
+
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark py-3 d-flex align-items-center" routerLink="/etiquetas-nueva" routerLinkActive="bg-primary text-white" data-bs-dismiss="offcanvas">
+                        <span class="material-symbols-outlined me-3">new_label</span>
+                        Añadir Etiqueta
+                    </a>
+                </li>
+
+                <li class="nav-item border-bottom">
+                    <a class="nav-link text-dark py-3 d-flex align-items-center" routerLink="/notas-consulta-por-nota" routerLinkActive="bg-primary text-white" data-bs-dismiss="offcanvas">
+                        <span class="material-symbols-outlined me-3">manage_search</span>
+                        Consulta por Nota
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
