@@ -1,0 +1,2 @@
+Ubicacion de los archivos:
+C:\xampp\htdocs
